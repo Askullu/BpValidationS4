@@ -58,4 +58,4 @@ stages:
         apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
         appName: 'cloud-extension-s4hana-business-process'
         manifest: 'manifest.yml'
-        credentialsId: 'myDeploymentCredentialsId'
+        credentialsId: 'global'
