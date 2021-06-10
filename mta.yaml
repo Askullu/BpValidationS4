@@ -1,4 +1,4 @@
-## Generated mta.yaml based on template version 0.2.0
+## Generated mta.yaml based on template version 0.4.0
 ## appName = BusinessPartnerValidation
 ## language=nodejs; multiTenant=false
 ## approuter=
@@ -7,12 +7,13 @@ ID: BusinessPartnerValidation
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
-  enable-parallel-deployments: true  
+  enable-parallel-deployments: true
+   
 build-parameters:
   before-all:
    - builder: custom
      commands:
-      - npm install
+      - npm install --production
       - npx -p @sap/cds-dk cds build --production
 
 modules:
@@ -30,7 +31,7 @@ modules:
     - name: BusinessPartnerValidation-db
     - name: BusinessPartnerValidation-xsuaa
     - name: BusinessPartnerValidation-dest
-    - name: BusinessPartnerValidation-ems
+    - name: BusinessPartnerValidation-em
     - name: BusinessPartnerValidation-cs
    provides:
     - name: srv-binding      # required by consumers of CAP services (e.g. approuter)
@@ -97,7 +98,7 @@ resources:
      service-plan: lite
    type: org.cloudfoundry.managed-service
 # Enterprise Messaging Service
- - name: BusinessPartnerValidation-ems
+ - name: BusinessPartnerValidation-em
    parameters:
      path: ./em.json 
      service: enterprise-messaging
